@@ -69,12 +69,12 @@ function checkUser(){
     if(dialog == 1){
         var para = new URLSearchParams();
         para.append("user_name", stuID);
-        location.href = "./login.html?" + para.toString();
+        location.href = "http://127.0.0.1:5500/login.html?" + para.toString();
         // console.log('Can login to user reserved');
     }else if(dialog ==2){
         var para = new URLSearchParams();
         para.append("user_name", stuID);
-        location.href = "./loginAdmin.html?" + para.toString();
+        location.href = "http://127.0.0.1:5500/loginAdmin.html?" + para.toString();
         // console.log('Can login to pass admin page');
     }else if(dialog ==3){
         alert('Cant login No User');
