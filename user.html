@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-size: 18px;
+        font-family: 'Sarabun', sans-serif;
+    }
+    
+    .container1 {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 20%;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+    }
+    
+    .zone0 {
+        grid-area: zone0;
+        text-align: center;
+    }
+    
+    .zone1 {
+        grid-area: zone1;
+        display: flex;
+    }
+    
+    .zone1 d1 {
+        color: rgb(255, 255, 255);
+        text-align: left;
+        flex: 1;
+    }
+    
+    .zone1 d2 {
+        color: rgb(255, 255, 255);
+        text-align: right;
+        flex: 1;
+        display: flex;
+    }
+    
+    .blank {
+        flex: 1;
+    }
+    
+    .green {
+        flex: 2;
+    }
+    
+    .green .g-color {
+        height: 21px;
+        width: 30px;
+        background-color: #71E899;
+    }
+    
+    .green>.g-color,
+    .green>p {
+        display: inline-block;
+    }
+    
+    .blue {
+        flex: 2;
+    }
+    
+    .blue .b-color {
+        height: 21px;
+        width: 30px;
+        background-color: #71E8E1;
+    }
+    
+    .blue>.b-color,
+    .blue>p {
+        display: inline-block;
+    }
+    
+    .red {
+        flex: 2;
+    }
+    
+    .red .r-color {
+        height: 21px;
+        width: 30px;
+        background-color: #FF8585;
+    }
+    
+    .red>.r-color,
+    .red>p {
+        display: inline-block;
+    }
+    
+    .zone2 {
+        background-color: #f1f1f1;
+        grid-area: zone2;
+        text-align: center;
+    }
+    
+    .day {
+        grid-area: day;
+    }
+    
+    .day1 {
+        grid-area: day1;
+    }
+    
+    .day2 {
+        grid-area: day2;
+    }
+    
+    .day3 {
+        grid-area: day3;
+    }
+    
+    .day4 {
+        grid-area: day4;
+    }
+    
+    .day5 {
+        grid-area: day5;
+    }
+    
+    .time1 {
+        grid-area: time1;
+    }
+    
+    .time2 {
+        grid-area: time2;
+    }
+    
+    .time3 {
+        grid-area: time3;
+    }
+    
+    .time4 {
+        grid-area: time4;
+    }
+    
+    .time5 {
+        grid-area: time5;
+    }
+    
+    .table {
+        height: 100%;
+        width: 100%;
+        /* padding: 1px 1px; */
+        display: grid;
+        background: #E6E6E6;
+        grid-template: 'day day1 day2 day3 day4 day5' 'time1 slot00 slot01 slot02 slot03 slot04' 'time2 slot10 slot11 slot12 slot13 slot14' 'time3 slot20 slot21 slot22 slot23 slot24' 'time4 slot30 slot31 slot32 slot33 slot34';
+        grid-gap: 3px;
+    }
+    
+    .table>dhead {
+        background-color: #7EC1FF;
+        color: white;
+        font-weight: bold;
+        padding: 30px;
+    }
+    
+    .table>dtime {
+        background-color: #ffffff;
+        padding: 30px;
+    }
+    
+    .table>ditem {
+        background-color: #71E899;
+        padding: 30px;
+    }
+    
+    .zone3 {
+        grid-area: zone3;
+        text-align: center;
+        padding: 0.9%;
+        color: white;
+        font-size: 15px;
+    }
+    
+    .zone4 {
+        grid-area: zone4;
+        text-align: center;
+    }
+    
+    #confirm {
+        font-family: 'Sarabun', sans-serif;
+        /* width: 170px;
+        height: 60px;
+        left: 769px;
+        top: 777px; */
+        padding: 2% 4%;
+        /* สีปุ่ม (ยังกดไม่ได้) */
+        background: #CCD7DE;
+        border-radius: 13px;
+        border: none;
+    }
+    
+    .container2 {
+        margin-left: 20%;
+        padding-top: 1%;
+        padding-left: 3%;
+        padding-right: 3%;
+        position: fixed;
+        height: 100%;
+        width: 73%;
+        display: grid;
+        background: #5E89C7;
+        grid-template: 'zone0' 'zone1' 'zone2' 'zone3' 'zone4';
+        grid-template-rows: 20% 5% 57% 5% 7%;
+        grid-gap: 1px;
+    }
+    
+    .lab li {
+        display: block;
+        color: #5E89C7;
+        padding-top: 14%;
+        padding-bottom: 14%;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 35px;
+        letter-spacing: 0em;
+        text-align: center;
+    }
+    
+    #user {
+        grid-row: 1/3;
+        display: flex;
+        background-color: #BBD1EA;
+        align-items: center;
+        color: black;
+        margin-left: 40px;
+    }
+    
+    #user p {
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    
+    .logout {
+        background-color: white;
+        align-items: center;
+        display: flex;
+        height: 141px;
+    }
+    
+    .logout d0 {
+        background-color: white;
+        align-items: center;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        padding-left: 20px;
+    }
+    
+    .logout d0:hover:not(.active) {
+        background-color: #555;
+    }
+    
+    .lab li.active {
+        background-color: #5E89C7;
+        color: white;
+    }
+    
+    .lab li:hover:not(.active) {
+        background-color: #555;
+        color: white;
+    }
+    
+    #setting {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 50% 50%;
+        background-color: #BBD1EA;
+        height: 140px;
+    }
+    
+    #item {
+        font-size: 28px;
+    }
+    
+    input[type=checkbox] {
+        transform: scale(2);
+    }
+</style>
+
+<body>
+    <div class="container1">
+        <div class="lab">
+            <li id="room1" onclick="to_room1()" class="active">ห้องปฏิบัติการ 1</li>
+            <li id="room2" onclick="to_room2()">ห้องปฏิบัติการ 2</li>
+            <li id="room3" onclick="to_room3()">ห้องปฏิบัติการ 3</li>
+            <li id="room4" onclick="to_room4()">ห้องปฏิบัติการ 4</li>
+            <li id="room5" onclick="to_room5()">ห้องปฏิบัติการ 5</li>
+            <div id="setting">
+                <div id="user">
+                    <img src="user.svg" alt="user">
+                    <p id="user_name">user</p>
+                </div>
+                <div class="logout">
+                    <d0 onclick="logout()" id="logout"><img src="logout 1.svg" alt="logout" id="logoutIcon"></d0>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container2">
+        <div class="zone0">
+            <d> ห้องนี้มี</d><br>
+            <img id="icon" src="1.png" alt="item"><br>
+            <div id="item"><b>คอมพิวเตอร์</b></div>
+        </div>
+        <div class="zone1">
+            <d1>กรุณาเลือกวันและเวลาที่ต้องการจอง</d1>
+            <d2>
+                <div class="blank"></div>
+                <div class="blank"></div>
+                <div class="green">
+                    <div class="g-color"></div>
+                    <p>จองได้</p>
+                </div>
+                <div class="blue">
+                    <div class="b-color"></div>
+                    <p>จองแล้ว</p>
+                </div>
+                <div class="red">
+                    <div class="r-color"></div>
+                    <p>จองเต็มแล้ว</p>
+                </div>
+            </d2>
+        </div>
+        <div class="zone2">
+            <divTable class="table">
+                <dhead class="day">วัน / ช่วงเวลา</dhead>
+                <dhead class="day1" id="day[0]">00 Jun 2021</dhead>
+                <dhead class="day2" id="day[1]">00 Jun 2021</dhead>
+                <dhead class="day3" id="day[2]">00 Jun 2021</dhead>
+                <dhead class="day4" id="day[3]">00 Jun 2021</dhead>
+                <dhead class="day5" id="day[4]">00 Jun 2021</dhead>
+                <dtime class="time1">08:00 - 10:00</dtime>
+                <dtime class="time2">10:00 - 12:00</dtime>
+                <dtime class="time3">13:00 - 15:00</dtime>
+                <dtime class="time4">15:00 - 17:00</dtime>
+                <ditem id="d[0]"><input type="checkbox" id="i[0]" name="i11" value="i11" onchange="change()"><label id="b[0]" for="i11">1/20</label></ditem>
+                <ditem id="d[1]"><input type="checkbox" id="i[1]" name="i12" value="i12" onchange="change()"><label id="b[1]" for="i12">2/20</label></ditem>
+                <ditem id="d[2]"><input type="checkbox" id="i[2]" name="i13" value="i13" onchange="change()"><label id="b[2]" for="i13">3/20</label></ditem>
+                <ditem id="d[3]"><input type="checkbox" id="i[3]" name="i14" value="i14" onchange="change()"><label id="b[3]" for="i14">4/20</label></ditem>
+                <ditem id="d[4]"><input type="checkbox" id="i[4]" name="i15" value="i15" onchange="change()"><label id="b[4]" for="i15">5/20</label></ditem>
+                <ditem id="d[5]"><input type="checkbox" id="i[5]" name="i21" value="i21" onchange="change()"><label id="b[5]" for="i21">6/20</label></ditem>
+                <ditem id="d[6]"><input type="checkbox" id="i[6]" name="i22" value="i22" onchange="change()"><label id="b[6]" for="i22">7/20</label></ditem>
+                <ditem id="d[7]"><input type="checkbox" id="i[7]" name="i23" value="i23" onchange="change()"><label id="b[7]" for="i23">8/20</label></ditem>
+                <ditem id="d[8]"><input type="checkbox" id="i[8]" name="i24" value="i24" onchange="change()"><label id="b[8]" for="i24">9/20</label></ditem>
+                <ditem id="d[9]"><input type="checkbox" id="i[9]" name="i25" value="i25" onchange="change()"><label id="b[9]" for="i25">10/20</label></ditem>
+                <ditem id="d[10]"><input type="checkbox" id="i[10]" name="i31" value="i31" onchange="change()"><label id="b[10]" for="i31">11/20</label></ditem>
+                <ditem id="d[11]"><input type="checkbox" id="i[11]" name="i32" value="i32" onchange="change()"><label id="b[11]" for="i32">12/20</label></ditem>
+                <ditem id="d[12]"><input type="checkbox" id="i[12]" name="i33" value="i33" onchange="change()"><label id="b[12]" for="i33">13/20</label></ditem>
+                <ditem id="d[13]"><input type="checkbox" id="i[13]" name="i34" value="i34" onchange="change()"><label id="b[13]" for="i34">14/20</label></ditem>
+                <ditem id="d[14]"><input type="checkbox" id="i[14]" name="i35" value="i35" onchange="change()"><label id="b[14]" for="i35">15/20</label></ditem>
+                <ditem id="d[15]"><input type="checkbox" id="i[15]" name="i41" value="i41" onchange="change()"><label id="b[15]" for="i41">16/20</label></ditem>
+                <ditem id="d[16]"><input type="checkbox" id="i[16]" name="i42" value="i42" onchange="change()"><label id="b[16]" for="i42">17/20</label></ditem>
+                <ditem id="d[17]"><input type="checkbox" id="i[17]" name="i43" value="i43" onchange="change()"><label id="b[17]" for="i43">18/20</label></ditem>
+                <ditem id="d[18]"><input type="checkbox" id="i[18]" name="i44" value="i44" onchange="change()"><label id="b[18]" for="i44">19/20</label></ditem>
+                <ditem id="d[19]"><input type="checkbox" id="i[19]" name="i45" value="i45" onchange="change()"><label id="b[19]" for="i45">20/20</label></ditem>
+            </divTable>
+        </div>
+        <div class="zone3">
+            <div id="checkQ"></div>
+        </div>
+        <div class="zone4"><button id="confirm" onclick="sent_data()" disabled="true">ยืนยัน</button></div>
+    </div>
+
+    <script src="script_user.js"></script>
+</body>
+
+</html>
+
+</html>

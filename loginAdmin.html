@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="./loginAdmin.css"/> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Studio</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Sarabun:ital@0;1&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sarabun', sans-serif;
+}
+body{
+    width: 100%;
+    height: 100%;
+    background-color: #5E89C7;
+}
+
+.login-container{
+    overflow: auto;
+    width: 47%; 
+    background-color: white;
+    margin-top: 12.66%;
+    margin-left: 26.25%;
+    display: flex;
+    flex-direction: column;
+}
+.login-container h3{
+    width:21.42%;
+    font-size: 24px;
+    margin-top: 5.10%;
+    margin-left: 41.5%;
+}
+.login-container h2{
+    width:21.42%;
+    font-size: 16px;
+    margin-top: 1.56%;
+    margin-left: 42.5%;
+}
+
+
+
+#password{
+    width: 67.93%;
+    font-size: 24px;
+    border-radius: 10px ;
+    background-color: #F1F1F1;
+    margin-top: 9.25%;
+    margin-left: 16.03%;
+    padding-top: 1.5%;
+    padding-left: 1%;
+    padding-bottom: 1.5%;
+}
+#password input::placeholder{
+    color: #898989;
+    font-size: 24px;
+}
+
+#btnBack{
+    font-size: 24px;
+    border-radius: 10px;
+    width: 19.17%;
+    margin-top: 8.74%;
+    margin-left: 27.28%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-bottom: 6.41%;
+}
+[type="button"]:hover{
+    background-color: #B5E4FF;
+}
+
+#btnGo{
+    font-size: 24px;
+    border-radius: 10px;
+    width: 19.17%;
+    margin-top: 8.74%;
+    margin-left: 4.37%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-bottom: 6.41%;
+}
+
+.tabBtn{
+    display: flex;
+    flex-direction: row;
+}
+</style>    
+</head>
+<body>
+    <div class="login-container">
+        <h3>เข้าสู่ระบบ</h3>
+        <h2>โหมด Admin</h2>
+        <input type="text" id="password" placeholder="Password">
+        <div class="tabBtn">
+            <input type="button" id="btnBack" value="ย้อนกลับ">
+            <input type="button" id="btnGo" value="ยืนยัน" onclick=checkAdmin()>
+        </div>
+        
+   </div>
+
+
+   <script src="script_login.js"></script>
+</body>
+</html>

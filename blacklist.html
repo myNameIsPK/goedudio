@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-size: 18px;
+        font-family: 'Sarabun', sans-serif;
+    }
+    
+    .container1 {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 20%;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+    }
+    
+    .container2 {
+        margin-left: 20%;
+        padding-top: 1%;
+        padding-left: 3%;
+        padding-right: 3%;
+        position: fixed;
+        height: 100%;
+        width: 73%;
+        display: grid;
+        background: #5E89C7;
+        grid-template: 'zone0' 'zone1' 'zone2' 'zone3' 'zone4';
+        grid-template-rows: 15% 5% 57% 5% 7%;
+        grid-gap: 1px;
+    }
+    
+    .container2 h1 {
+        font-family: Sarabun;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 42px;
+        letter-spacing: 0em;
+        text-align: center;
+    }
+    
+    .lab li {
+        display: block;
+        color: #5E89C7;
+        padding-top: 14%;
+        padding-bottom: 14%;
+        background-color: white;
+        font-family: Sarabun;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 35px;
+        letter-spacing: 0em;
+        text-align: center;
+    }
+    
+    .lab2 li {
+        display: block;
+        color: #5E89C7;
+        padding-top: 14%;
+        padding-bottom: 14%;
+        background-color: white;
+        font-family: Sarabun;
+        font-size: 20px;
+        font-style: normal;
+        line-height: 2px;
+        letter-spacing: 0em;
+        text-align: center;
+    }
+    
+    .lab2 li:hover:not(.active) {
+        background-color: #555;
+        color: white;
+    }
+    
+    .lab2 li.active {
+        background-color: #5E89C7;
+        color: white;
+    }
+    
+    #addmin {
+        grid-row: 1/3;
+        display: flex;
+        background-color: #BBD1EA;
+        align-items: center;
+        color: black;
+        margin-left: 40px;
+    }
+    
+    #addmin p {
+        font-family: Sarabun;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    
+    .lab li.active {
+        background-color: #5E89C7;
+        color: white;
+    }
+    
+    .lab li:hover:not(.active) {
+        background-color: #555;
+        color: white;
+    }
+    
+    #setting {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 50% 50%;
+        background-color: #BBD1EA;
+        height: 140px;
+    }
+    
+    #confirm {
+        width: 170px;
+        height: 60px;
+        left: 769px;
+        top: 777px;
+        /* สีปุ่ม (ยังกดไม่ได้) */
+        background: #CCD7DE;
+        border-radius: 15px;
+        border: none;
+    }
+    
+    button {
+        font-family: Sarabun;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    
+    .zone0 {
+        grid-area: zone0;
+        text-align: center;
+    }
+    
+    .zone0 d {
+        font-size: 40px;
+        font-weight: bolder;
+    }
+    
+    .zone1 {
+        grid-area: zone1;
+        display: flex;
+    }
+    
+    .zone1 d1 {
+        color: rgb(255, 255, 255);
+        text-align: left;
+        flex: 1;
+    }
+    
+    .zone1 d2 {
+        color: rgb(255, 255, 255);
+        background-color: #f1f1f1;
+        text-align: right;
+        flex: 1;
+        display: flex;
+    }
+    
+    .zone2 {
+        /* background-color: #f1f1f1; */
+        grid-area: zone2;
+        text-align: center;
+    }
+    
+    .zone3 {
+        grid-area: zone3;
+        text-align: center;
+        padding: 0.9%;
+        color: white;
+        font-size: 15px;
+    }
+    
+    .zone4 {
+        grid-area: zone4;
+        text-align: center;
+    }
+    
+    .table {
+        height: 100%;
+        width: 100%;
+        /* padding: 1px 1px; */
+        display: grid;
+        background: white;
+        grid-template: '. . . .' '. . . .' '. . . .' '. . . .' '. . . .' '. . . .' '. . . .' '. . . .';
+        grid-gap: 3px;
+        border-radius: 10px;
+    }
+    
+    .table duser {
+        padding: 12px;
+    }
+    
+    .table label {
+        padding-left: 10px;
+    }
+    
+    input[type=checkbox] {
+        transform: scale(2);
+    }
+</style>
+
+<body>
+    <div class="container1">
+        <div class="lab">
+            <li id="room1" onclick="chang_page(1)">ห้องปฏิบัติการ 1</li>
+            <li id="room2" onclick="chang_page(2)">ห้องปฏิบัติการ 2</li>
+            <li id="room3" onclick="chang_page(3)">ห้องปฏิบัติการ 3</li>
+            <li id="room4" onclick="chang_page(4)">ห้องปฏิบัติการ 4</li>
+            <li id="room5" onclick="chang_page(5)">ห้องปฏิบัติการ 5</li>
+            <div id="setting">
+                <div id="addmin">
+                    <img src="user.svg" alt="user">
+                    <p>Addmin</p>
+                </div>
+                <div class="lab2">
+                    <li id="blacklist" class="active" onclick="go_blacklist()"><img src="blacklist2.svg" alt="blacklist"></li>
+                    <li id="logout"><img src="logout 1.svg" alt="logout"></li>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="container2">
+        <div class="zone0">
+            <d>Blacklist</d>
+        </div>
+        <div class="zone1">
+            <d1>กรุณาเลือกเลือกนักศึกษาที่จะ Blacklist</d1>
+        </div>
+        <div class="zone2">
+            <div class="table">
+                <duser id="d[0]"><input type="checkbox" id="i[0]" name="i1" value="i1" onchange="change()"><label id="b[0]" for="i1">61010001</label></duser>
+                <duser id="d[1]"><input type="checkbox" id="i[1]" name="i2" value="i2" onchange="change()"><label id="b[1]" for="i2">61010002</label></duser>
+                <duser id="d[2]"><input type="checkbox" id="i[2]" name="i3" value="i3" onchange="change()"><label id="b[2]" for="i3">61010003</label></duser>
+                <duser id="d[3]"><input type="checkbox" id="i[3]" name="i4" value="i4" onchange="change()"><label id="b[3]" for="i4">61010004</label></duser>
+                <duser id="d[4]"><input type="checkbox" id="i[4]" name="i5" value="i5" onchange="change()"><label id="b[4]" for="i5">61010005</label></duser>
+                <duser id="d[5]"><input type="checkbox" id="i[5]" name="i6" value="i6" onchange="change()"><label id="b[5]" for="i6">61010006</label></duser>
+                <duser id="d[6]"><input type="checkbox" id="i[6]" name="i7" value="i7" onchange="change()"><label id="b[6]" for="i7">61010007</label></duser>
+                <duser id="d[7]"><input type="checkbox" id="i[7]" name="i8" value="i8" onchange="change()"><label id="b[7]" for="i8">61010008</label></duser>
+                <duser id="d[8]"><input type="checkbox" id="i[8]" name="i9" value="i9" onchange="change()"><label id="b[8]" for="i9">61010009</label></duser>
+                <duser id="d[9]"><input type="checkbox" id="i[9]" name="i10" value="i10" onchange="change()"><label id="b[9]" for="i10">61010010</label></duser>
+                <duser id="d[10]"><input type="checkbox" id="i[10]" name="i11" value="i11" onchange="change()"><label id="b[10]" for="i11">61010011</label></duser>
+                <duser id="d[11]"><input type="checkbox" id="i[11]" name="i12" value="i12" onchange="change()"><label id="b[11]" for="i12">61010012</label></duser>
+                <duser id="d[12]"><input type="checkbox" id="i[12]" name="i13" value="i13" onchange="change()"><label id="b[12]" for="i13">61010013</label></duser>
+                <duser id="d[13]"><input type="checkbox" id="i[13]" name="i14" value="i14" onchange="change()"><label id="b[13]" for="i14">61010014</label></duser>
+                <duser id="d[14]"><input type="checkbox" id="i[14]" name="i15" value="i15" onchange="change()"><label id="b[14]" for="i15">61010015</label></duser>
+                <duser id="d[15]"><input type="checkbox" id="i[15]" name="i16" value="i16" onchange="change()"><label id="b[15]" for="i16">61010016</label></duser>
+                <duser id="d[16]"><input type="checkbox" id="i[16]" name="i17" value="i17" onchange="change()"><label id="b[16]" for="i17">61010017</label></duser>
+                <duser id="d[17]"><input type="checkbox" id="i[17]" name="i18" value="i18" onchange="change()"><label id="b[17]" for="i18">61010018</label></duser>
+                <duser id="d[18]"><input type="checkbox" id="i[18]" name="i19" value="i19" onchange="change()"><label id="b[18]" for="i19">61010019</label></duser>
+                <duser id="d[19]"><input type="checkbox" id="i[19]" name="i20" value="i20" onchange="change()"><label id="b[19]" for="i20">61010020</label></duser>
+                <duser id="d[20]"><input type="checkbox" id="i[20]" name="i21" value="i21" onchange="change()"><label id="b[20]" for="i21">61010021</label></duser>
+                <duser id="d[21]"><input type="checkbox" id="i[21]" name="i22" value="i22" onchange="change()"><label id="b[21]" for="i22">61010022</label></duser>
+                <duser id="d[22]"><input type="checkbox" id="i[22]" name="i23" value="i23" onchange="change()"><label id="b[22]" for="i23">61010023</label></duser>
+                <duser id="d[23]"><input type="checkbox" id="i[23]" name="i24" value="i24" onchange="change()"><label id="b[23]" for="i24">61010024</label></duser>
+                <duser id="d[24]"><input type="checkbox" id="i[24]" name="i25" value="i25" onchange="change()"><label id="b[24]" for="i25">61010025</label></duser>
+                <duser id="d[25]"><input type="checkbox" id="i[25]" name="i26" value="i26" onchange="change()"><label id="b[25]" for="i26">61010026</label></duser>
+                <duser id="d[26]"><input type="checkbox" id="i[26]" name="i27" value="i27" onchange="change()"><label id="b[26]" for="i27">61010027</label></duser>
+                <duser id="d[27]"><input type="checkbox" id="i[27]" name="i28" value="i28" onchange="change()"><label id="b[27]" for="i28">61010028</label></duser>
+                <duser id="d[28]"><input type="checkbox" id="i[28]" name="i29" value="i29" onchange="change()"><label id="b[28]" for="i29">61010029</label></duser>
+                <duser id="d[29]"><input type="checkbox" id="i[29]" name="i30" value="i30" onchange="change()"><label id="b[29]" for="i30">61010030</label></duser>
+                <duser id="d[30]"><input type="checkbox" id="i[30]" name="i31" value="i31" onchange="change()"><label id="b[30]" for="i31">61010031</label></duser>
+                <duser id="d[31]"><input type="checkbox" id="i[31]" name="i32" value="i32" onchange="change()"><label id="b[31]" for="i32">61010032</label></duser>
+            </div>
+        </div>
+        <div class="zone3">
+            <div id="checkQ"></div>
+        </div>
+        <div class="zone4"><button id="confirm" onclick="sent_data()" disabled="true">ยืนยัน</button></div>
+    </div>
+</body>
+<script src="blacklist.js"></script>
+
+</html>
