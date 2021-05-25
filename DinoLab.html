@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-size: 18px;
+        font-family: 'Sarabun', sans-serif;
+    }
+    
+    .container1 {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 20%;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+    }
+    
+    .container2 {
+        margin-left: 20%;
+        padding-top: 1%;
+        padding-left: 3%;
+        padding-right: 3%;
+        position: fixed;
+        height: 100%;
+        width: 73%;
+        display: grid;
+        background: #5E89C7;
+        grid-template: 'zone0' 'zone1' 'zone2' 'zone3' 'zone4';
+        grid-template-rows: 12% 12% 70% 1% 1%;
+    }
+    
+    .container2 h1 {
+        font-family: Sarabun;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 42px;
+        letter-spacing: 0em;
+        text-align: center;
+    }
+    
+    .lab li {
+        display: block;
+        color: #5E89C7;
+        padding-top: 11.5%;
+        padding-bottom: 11.5%;
+        background-color: white;
+        font-family: Sarabun;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 35px;
+        letter-spacing: 0em;
+        text-align: center;
+    }
+    
+    .lab2 li {
+        display: block;
+        color: #5E89C7;
+        padding-top: 11.5%;
+        padding-bottom: 11.5%;
+        background-color: white;
+        font-family: Sarabun;
+        font-size: 20px;
+        font-style: normal;
+        line-height: 2px;
+        letter-spacing: 0em;
+        text-align: center;
+    }
+    
+    .lab2 li:hover:not(.active) {
+        background-color: #555;
+        color: white;
+    }
+    
+    .lab2 li.active {
+        background-color: #5E89C7;
+        color: white;
+    }
+    
+    #addmin {
+        grid-row: 1/3;
+        display: flex;
+        background-color: #BBD1EA;
+        align-items: center;
+        color: black;
+        margin-left: 40px;
+    }
+    
+    #addmin p {
+        font-family: Sarabun;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    
+    .lab li.active {
+        background-color: #5E89C7;
+        color: white;
+    }
+    
+    .lab li:hover:not(.active) {
+        background-color: #555;
+        color: white;
+    }
+    
+    #setting {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 50% 50%;
+        background-color: #BBD1EA;
+        height: 140px;
+    }
+    
+    #confirm {
+        width: 170px;
+        height: 60px;
+        left: 769px;
+        top: 777px;
+        /* สีปุ่ม (ยังกดไม่ได้) */
+        background: #CCD7DE;
+        border-radius: 15px;
+        border: none;
+    }
+    
+    button {
+        font-family: Sarabun;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    
+    .zone0 {
+        grid-area: zone0;
+        text-align: center;
+    }
+    
+    .zone0 d {
+        font-size: 40px;
+        font-weight: bolder;
+    }
+    
+    .zone1 {
+        grid-area: zone1;
+        display: grid;
+        grid-template: ". . . . .";
+        text-align: center;
+        grid-column-gap: 10px;
+    }
+    
+    .zone1 d1 {
+        border-radius: 2px;
+        border: #f1f1f1;
+        flex: 1;
+    }
+    
+    .zone2 {
+        grid-area: zone2;
+        text-align: center;
+    }
+    
+    .zone3 {
+        grid-area: zone3;
+        text-align: center;
+        padding: 0.9%;
+        color: white;
+        font-size: 15px;
+    }
+    
+    .zone4 {
+        grid-area: zone4;
+        text-align: center;
+    }
+    
+    .table {
+        height: 100%;
+        width: 100%;
+        /* padding: 1px 1px; */
+        display: grid;
+        background: #555;
+        grid-template: 'timeday day1 day2 day3 day4 day5 day6 day7 day8 day9 day10 day11 day12 day13 day14' 'time1 . . . . . . . . . . . . . .' 'time2 . . . . . . . . . . . . . .' 'time3 . . . . . . . . . . . . . .' 'time4 . . . . . . . . . . . . . .' 'time5 . . . . . . . . . . . . . .' 'time6 . . . . . . . . . . . . . .' 'time7 . . . . . . . . . . . . . .';
+        grid-template-columns: 11%;
+        grid-gap: 3px;
+        border-radius: 10px;
+    }
+    
+    .table b1 {
+        padding: 10px;
+        background: white;
+    }
+    
+    .zone1 button {
+        background-color: white;
+        border-radius: 6px;
+        padding: 20px;
+        border: none;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .zone1 button.active {
+        background-color: #7EC1FF;
+        color: white;
+    }
+    
+    #time1 {
+        grid-area: time1;
+    }
+    
+    #time2 {
+        grid-area: time2;
+    }
+    
+    #time3 {
+        grid-area: time3;
+    }
+    
+    #time4 {
+        grid-area: time4;
+    }
+    
+    #time5 {
+        grid-area: time5;
+    }
+    
+    #time6 {
+        grid-area: time6;
+    }
+    
+    #time7 {
+        grid-area: time7;
+    }
+</style>
+
+<body>
+    <div class="container1">
+        <div class="lab">
+            <li id="room1" onclick="chang_page(1)">ห้องปฏิบัติการ 1</li>
+            <li id="room2" onclick="chang_page(2)">ห้องปฏิบัติการ 2</li>
+            <li id="room3" onclick="chang_page(3)">ห้องปฏิบัติการ 3</li>
+            <li id="room4" onclick="chang_page(4)">ห้องปฏิบัติการ 4</li>
+            <li id="room5" onclick="chang_page(5)">ห้องปฏิบัติการ 5</li>
+            <li id="dinolab" class="active" onclick="go_dinoLab()">DinoLab</li>
+            <div id="setting">
+                <div id="addmin">
+                    <img src="user.svg" alt="user">
+                    <p>Addmin</p>
+                </div>
+                <div class="lab2">
+                    <li id="blacklist" onclick="go_blacklist()"><img src="blacklist.svg" alt="blacklist"></li>
+                    <li id="logout" onclick="logout()"><img src="logout 1.svg" alt="logout"></li>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="container2">
+        <div class="zone0">
+            <d>DinoLab</d>
+        </div>
+        <div class="zone1">
+            <d1><button id="bt1" class="active" onclick="go_bt1()">HW Lab - Arduino</button></d1>
+            <d1><button id="bt2" onclick="go_bt2()">NW Lab - Hantek</button></d1>
+            <d1><button id="bt3" onclick="go_bt3()">SAIG Lab - 3D printer</button></d1>
+            <d1><button id="bt4" onclick="go_bt4()">HCL Lab - FPGA</button></d1>
+            <d1><button id="bt5" onclick="go_bt5()">ESL Lab - Raspberry pi</button></d1>
+        </div>
+        <div class="zone2">
+            <div class="table">
+                <b1>วัน / ช่วงเวลา</b1>
+                <b1 id="day[0]">23 ads 2010</b1>
+                <b1 id="day[1]">23 ads 2010</b1>
+                <b1 id="day[2]">23 ads 2010</b1>
+                <b1 id="day[3]">23 ads 2010</b1>
+                <b1 id="day[4]">23 ads 2010</b1>
+                <b1 id="day[5]">23 ads 2010</b1>
+                <b1 id="day[6]">23 ads 2010</b1>
+                <b1 id="day[7]">23 ads 2010</b1>
+                <b1 id="day[8]">23 ads 2010</b1>
+                <b1 id="day[9]">23 ads 2010</b1>
+                <b1 id="day[10]">23 ads 2010</b1>
+                <b1 id="day[11]">23 ads 2010</b1>
+                <b1 id="day[12]">23 ads 2010</b1>
+                <b1 id="day[13]">23 ads 2010</b1>
+                <b1 id="time1">09.00 - 10.00</b1>
+                <b1 id="time2">10.00 - 11.00</b1>
+                <b1 id="time3">11.00 - 12.00</b1>
+                <b1 id="time4">12.00 - 13.00</b1>
+                <b1 id="time5">13.00 - 14.00</b1>
+                <b1 id="time6">14.00 - 15.00</b1>
+                <b1 id="time7">15.00 - 16.00</b1>
+                <b1 id="booking[0]">10</b1>
+                <b1 id="booking[1]">10</b1>
+                <b1 id="booking[2]">10</b1>
+                <b1 id="booking[3]">10</b1>
+                <b1 id="booking[4]">10</b1>
+                <b1 id="booking[5]">10</b1>
+                <b1 id="booking[6]">10</b1>
+                <b1 id="booking[7]">10</b1>
+                <b1 id="booking[8]">10</b1>
+                <b1 id="booking[9]">10</b1>
+                <b1 id="booking[10]">10</b1>
+                <b1 id="booking[11]">10</b1>
+                <b1 id="booking[12]">10</b1>
+                <b1 id="booking[13]">10</b1>
+
+                <b1 id="booking[14]">10</b1>
+                <b1 id="booking[15]">10</b1>
+                <b1 id="booking[16]">10</b1>
+                <b1 id="booking[17]">10</b1>
+                <b1 id="booking[18]">10</b1>
+                <b1 id="booking[19]">10</b1>
+                <b1 id="booking[20]">10</b1>
+                <b1 id="booking[21]">10</b1>
+                <b1 id="booking[22]">10</b1>
+                <b1 id="booking[23]">10</b1>
+                <b1 id="booking[24]">10</b1>
+                <b1 id="booking[25]">10</b1>
+                <b1 id="booking[26]">10</b1>
+                <b1 id="booking[27]">10</b1>
+                <b1 id="booking[28]">10</b1>
+
+                <b1 id="booking[29]">10</b1>
+                <b1 id="booking[30]">10</b1>
+                <b1 id="booking[31]">10</b1>
+                <b1 id="booking[32]">10</b1>
+                <b1 id="booking[33]">10</b1>
+                <b1 id="booking[34]">10</b1>
+                <b1 id="booking[35]">10</b1>
+                <b1 id="booking[36]">10</b1>
+                <b1 id="booking[37]">10</b1>
+                <b1 id="booking[38]">10</b1>
+                <b1 id="booking[39]">10</b1>
+                <b1 id="booking[40]">10</b1>
+                <b1 id="booking[41]">10</b1>
+                <b1 id="booking[42]">10</b1>
+
+                <b1 id="booking[43]">10</b1>
+                <b1 id="booking[44]">10</b1>
+                <b1 id="booking[45]">10</b1>
+                <b1 id="booking[46]">10</b1>
+                <b1 id="booking[47]">10</b1>
+                <b1 id="booking[48]">10</b1>
+                <b1 id="booking[49]">10</b1>
+                <b1 id="booking[50]">10</b1>
+                <b1 id="booking[51]">10</b1>
+                <b1 id="booking[52]">10</b1>
+                <b1 id="booking[53]">10</b1>
+                <b1 id="booking[54]">10</b1>
+                <b1 id="booking[55]">10</b1>
+                <b1 id="booking[56]">10</b1>
+
+                <b1 id="booking[57]">10</b1>
+                <b1 id="booking[58]">10</b1>
+                <b1 id="booking[59]">10</b1>
+                <b1 id="booking[60]">10</b1>
+                <b1 id="booking[61]">10</b1>
+                <b1 id="booking[62]">10</b1>
+                <b1 id="booking[63]">10</b1>
+                <b1 id="booking[64]">10</b1>
+                <b1 id="booking[65]">10</b1>
+                <b1 id="booking[66]">10</b1>
+                <b1 id="booking[67]">10</b1>
+                <b1 id="booking[68]">10</b1>
+                <b1 id="booking[69]">10</b1>
+                <b1 id="booking[70]">10</b1>
+
+                <b1 id="booking[71]">10</b1>
+                <b1 id="booking[72]">10</b1>
+                <b1 id="booking[73]">10</b1>
+                <b1 id="booking[74]">10</b1>
+                <b1 id="booking[75]">10</b1>
+                <b1 id="booking[76]">10</b1>
+                <b1 id="booking[77]">10</b1>
+                <b1 id="booking[78]">10</b1>
+                <b1 id="booking[79]">10</b1>
+                <b1 id="booking[80]">10</b1>
+                <b1 id="booking[81]">10</b1>
+                <b1 id="booking[82]">10</b1>
+                <b1 id="booking[83]">10</b1>
+                <b1 id="booking[84]">10</b1>
+                <b1 id="booking[85]">10</b1>
+                <b1 id="booking[86]">10</b1>
+                <b1 id="booking[87]">10</b1>
+                <b1 id="booking[88]">10</b1>
+                <b1 id="booking[89]">10</b1>
+                <b1 id="booking[90]">10</b1>
+                <b1 id="booking[91]">10</b1>
+                <b1 id="booking[92]">10</b1>
+                <b1 id="booking[93]">10</b1>
+                <b1 id="booking[94]">10</b1>
+                <b1 id="booking[95]">10</b1>
+                <b1 id="booking[96]">10</b1>
+                <b1 id="booking[97]">10</b1>
+
+            </div>
+        </div>
+        <div class="zone3">
+            <div id="checkQ"></div>
+        </div>
+
+    </div>
+</body>
+<script src="dinolab.js"></script>
+
+</html>

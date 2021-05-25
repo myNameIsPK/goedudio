@@ -46,8 +46,8 @@
     .lab li {
         display: block;
         color: #5E89C7;
-        padding-top: 14%;
-        padding-bottom: 14%;
+        padding-top: 11.5%;
+        padding-bottom: 11.5%;
         background-color: white;
         font-family: Sarabun;
         font-size: 20px;
@@ -217,7 +217,7 @@
     .show_stu {
         /* position: absolute; */
         /* width: 1031px; */
-        height: 200px;
+        height: 220px;
         margin-top: 10px;
         /* height: 50%; */
         width: 100%;
@@ -226,6 +226,7 @@
         grid-template-columns: auto auto auto auto;
         grid-template-rows: auto auto auto auto auto;
         display: grid;
+        padding: 10px 0;
     }
     
     label {
@@ -243,12 +244,10 @@
         color: #000000;
     }
     
-    .show_stu {
-        padding-top: 25px;
-    }
-    
     .show_stu div {
         text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     
     button {
@@ -264,19 +263,20 @@
 <body>
     <div class="container1">
         <div class="lab">
-            <li id="active" onclick="click_room('computer')">ห้องปฏิบัติการ 1</li>
-            <li id="scope" onclick="click_room('scope')">ห้องปฏิบัติการ 2</li>
-            <li id="meter" onclick="click_room('meter')">ห้องปฏิบัติการ 3</li>
-            <li id="toolbox" onclick="click_room('toolbox')">ห้องปฏิบัติการ 4</li>
-            <li id="arduino" onclick="click_room('arduino')">ห้องปฏิบัติการ 5</li>
+            <li id="active" onclick="click_room(0)">ห้องปฏิบัติการ 1</li>
+            <li id="scope" onclick="click_room(1)">ห้องปฏิบัติการ 2</li>
+            <li id="meter" onclick="click_room(2)">ห้องปฏิบัติการ 3</li>
+            <li id="toolbox" onclick="click_room(3)">ห้องปฏิบัติการ 4</li>
+            <li id="arduino" onclick="click_room(4)">ห้องปฏิบัติการ 5</li>
+            <li id="dinolab" onclick="go_dinoLab()">DinoLab</li>
             <div id="setting">
                 <div id="addmin">
                     <img src="user.svg" alt="user">
-                    <p>Addmin</p>
+                    <p>Admin</p>
                 </div>
                 <div class="lab2">
                     <li id="blacklist" onclick="go_blacklist()"><img src="blacklist.svg" alt="blacklist"></li>
-                    <li id="logout"><img src="logout 1.svg" alt="logout"></li>
+                    <li id="logout" onclick="logout()"><img src="logout 1.svg" alt="logout"></li>
                 </div>
 
 
@@ -343,27 +343,29 @@
                 <p id="total"></p>
             </div>
             <div id="item_manager">
-                <img src="remove_outline.svg " alt="remove " style="width: 47px; height: 47px; " onclick="remove_item() ">
+                <img src="remove_outline.svg" alt="remove " style="width: 47px; height: 47px; " onclick="remove_item() ">
                 <p id="warehouse" style="font-family: Roboto; font-style: normal; font-weight: normal; font-size: 36px; line-height: 42px; text-align: center; color: #000000; ">0</p>
                 <img src="add_outline.svg " alt="add " style="width: 47px; height: 47px; " onclick="add_item() ">
-                <button style=" width: 126px; height: 68px; background: #CCD7DE; border-radius: 15px; ">ยืนยัน</button>
+                <button style=" width: 126px; height: 68px; background: #CCD7DE; border-radius: 15px; " id="con_item" onclick="confirm_WH()">ยืนยัน</button>
             </div>
         </div>
     </div>
 </body>
 <script>
     /////////////////////////////pala pass/////////////////
-    var para = new URLSearchParams();
+    //var para = new URLSearchParams();
     ///////////////////////////// Date ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////// show date()//////////////////////////////////////////////////////////////////////////////
+    roomName = ['computer', 'scope', 'meter', 'toolbox', 'arduino'];
     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     var day = new Date().getDate()
     var m = new Date().getMonth().toString()
     var y = new Date().getFullYear().toString()
+    room = 0;
     today = day + ' ' + month[m] + ' ' + y
-    for (i = 1; i < 6; i++) {
+    for (i = 0; i < 5; i++) {
         today = (day + i).toString() + ' ' + month[m] + ' ' + y
-        document.getElementById(i.toString()).innerHTML = today
+        document.getElementById((i + 1).toString()).innerHTML = today
     }
     ///////////////////////////// click date//////////////////////////////////////////////////////////////////////////////
     const d = [{
@@ -399,6 +401,7 @@
             }
         }
         document.getElementById('warning').style.color = "#5E89C7";
+        document.getElementById('confirm').style.backgroundColor = "#CCD7DE";
         getFilter(r, d, t);
         show_stu(Filter);
         total_item(Filter);
@@ -432,10 +435,12 @@
         img: 'arduino-fixed.svg'
     }];
 
-    function click_room(room) {
+    function click_room(roomja) {
+        room = roomja;
         document.getElementById('warning').style.color = "#5E89C7";
+        document.getElementById('confirm').style.backgroundColor = "#CCD7DE";
         for (i = 0; i < 5; i++) {
-            if (room == r[i].name) {
+            if (roomName[roomja] == r[i].name) {
                 document.getElementById('equ_name').innerHTML = r[i].th
                 document.getElementById('header').innerHTML = 'ห้องปฏิบัติการ ' + (i + 1).toString()
                 document.getElementById('img_room').src = r[i].img
@@ -452,11 +457,11 @@
         }
 
         for (i = 0; i < 5; i++) {
-            if (room == r[i].name) {
+            if (roomName[roomja] == r[i].name) {
                 r[i].state = !r[i].state
                     // document.getElementById(room).style.backgroundColor = '#5E89C7';
                     // document.getElementById(room).style.color = 'white';
-                document.getElementById(room).id = 'active'
+                document.getElementById(roomName[roomja]).id = 'active'
             }
         }
         getFilter(r, d, t);
@@ -481,6 +486,7 @@
 
     function click_time(time) {
         document.getElementById('warning').style.color = "#5E89C7";
+        document.getElementById('confirm').style.backgroundColor = "#CCD7DE";
         for (i = 0; i < 4; i++) {
             if (t[i].state == true) {
                 t[i].state = !t[i].state
@@ -498,7 +504,7 @@
         getFilter(r, d, t);
         show_stu(Filter);
         total_item(Filter);
-        
+
     }
     ////////////////////////////// get booking /////////////////////////////////
     var bookings;
@@ -546,12 +552,16 @@
         }
     }
 
-    const Filter = [
-            {room: 'computer'}, 
-            {day: '1'},
-            {time: '08'}]
+    const Filter = [{
+        room: 'computer'
+    }, {
+        day: '1'
+    }, {
+        time: '08'
+    }]
+
     function getFilter(r, d, t) {
-        
+
         for (i = 0; i < r.length; i++) {
             if (r[i].state == true) {
                 Filter.room = r[i].name
@@ -570,25 +580,78 @@
     }
 
     var warehouse = 0;
+    async function putItem(url = '', name = '', body = {}) {
+        try {
+            let res = await fetch(url + '/' + name, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            });
+            return res;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function confirm_WH() {
+        num=0;
+        for(i=0;i<item.length;i++){
+            if(item[i].name==roomName[room]){
+                num=i;
+                break;
+            }
+        }
+        sum = item[num].total + warehouse;
+        if (sum < 0) {
+            sum = 0;
+        }
+        if (sum > 99) {
+            sum = 99;
+        }
+        console.log("can use");
+        console.log(item[num].id);
+        console.log(item[num].name);
+        console.log(sum);
+        let response = await putItem('https://bookingapi1.azurewebsites.net/api/items', item[num].name, {
+            id: item[num].id,
+            name: item[num].name,
+            bookTotal: 0,
+            total: sum
+        });
+        if (response.status == 204)
+            console.log("Update Success")
+        warehouse = 0;
+        document.getElementById('con_item').disabled = true;
+        document.getElementById('con_item').style.backgroundColor = "#CCD7DE";
+        document.getElementById('warehouse').innerHTML = warehouse
+        start(room);
+    }
 
     function add_item() {
         warehouse = warehouse + 1;
         document.getElementById('warehouse').innerHTML = warehouse
-            // console.log(warehouse)
+        document.getElementById('con_item').disabled = false;
+        document.getElementById('con_item').style.backgroundColor = "#B5E4FF";
+        // console.log(warehouse)
     }
 
     function remove_item() {
-        if (warehouse > 0) {
-            warehouse = warehouse - 1;
-            document.getElementById('warehouse').innerHTML = warehouse
-        }
+        warehouse = warehouse - 1;
+        document.getElementById('warehouse').innerHTML = warehouse
+        document.getElementById('con_item').disabled = false;
+        document.getElementById('con_item').style.backgroundColor = "#B5E4FF";
     }
+
+
 
     function warning(id) {
         document.getElementById('warning').style.color = 'white';
+        document.getElementById('confirm').style.backgroundColor = "#B5E4FF";
     }
 
-    async function select_delete(filter){
+    async function select_delete(filter) {
         bookings = await getBooking();
         // console.log(bookings)
         // filter
@@ -596,18 +659,18 @@
             return item.itemName == filter.room && item.dateSlot == filter.day && item.time == filter.time;
         });
         // console.log(filterBookings)
-        for(i = 0;i<filterBookings.length;i++){
-            check = document.getElementById('c'+(i+1).toString())
-            if(check.checked == true){
+        for (i = 0; i < filterBookings.length; i++) {
+            check = document.getElementById('c' + (i + 1).toString())
+            if (check.checked == true) {
                 console.log(filterBookings[i])
                 let response = await deleteBooking(filterBookings[i].id);
-                document.getElementById('stu'+(i+1).toString()).innerHTML = '  '
+                document.getElementById('stu' + (i + 1).toString()).innerHTML = '  '
             }
         }
     }
 
-    async function getItem_computer() {
-        let url = 'https://bookingapi1.azurewebsites.net/api/Items/total/computer';
+    async function getItem() {
+        let url = 'https://bookingapi1.azurewebsites.net/api/Items/';
         try {
             let res = await fetch(url);
             return await res.json();
@@ -616,93 +679,56 @@
         }
     }
 
-    async function getItem_scope() {
-        let url = 'https://bookingapi1.azurewebsites.net/api/Items/total/scope';
-        try {
-            let res = await fetch(url);
-            return await res.json();
-        } catch (error) {
-            console.log(error);
+    async function total_item(filter) {
+        item = await getItem()
+        for (i = 0; i < 5; i++) {
+            if (filter.room == item[i].name) {
+                document.getElementById('total').innerHTML = `จำนวนของในคลัง : ${item[i].total}/99`
+                if (parseInt(item[i].total) > 20) {
+                    document.getElementById('total_room').innerHTML = `จำนวนของในห้อง : 20/20`
+                } else {
+                    document.getElementById('total_room').innerHTML = `จำนวนของในห้อง : ${item[i].total}/20`
+                }
+            }
         }
     }
 
-    async function getItem_meter() {
-        let url = 'https://bookingapi1.azurewebsites.net/api/Items/total/meter';
-        try {
-            let res = await fetch(url);
-            return await res.json();
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    async function getItem_toolbox() {
-        let url = 'https://bookingapi1.azurewebsites.net/api/Items/total/toolbox';
-        try {
-            let res = await fetch(url);
-            return await res.json();
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    async function getItem_arduino() {
-        let url = 'https://bookingapi1.azurewebsites.net/api/Items/total/arduino';
-        try {
-            let res = await fetch(url);
-            return await res.json();
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    async function total_item(filter){
-        let map_time = 0
-        for(i = 0;i<4;i++){
-            if(filter.time ==  '08'){map_time = 0;}
-            else if(filter.time == '10'){map_time = 5;}
-            else if(filter.time == '13'){map_time = 10;}
-            else {map_time = 15;}
-        }
-
-        if(filter.room == 'computer'){
-            computer_item = await getItem_computer()
-            count = parseInt(filter.day) + map_time
-            document.getElementById('total_room').innerHTML = `จำนวนของในห้อง : ${computer_item.totalArray[count  - 1]}/20`
-        }
-        else if(filter.room == 'scope'){
-            scope_item = await  getItem_scope ()
-            count = parseInt(filter.day) + map_time
-            document.getElementById('total_room').innerHTML = `จำนวนของในห้อง : ${scope_item.totalArray[count  - 1]}/20`
-        }
-        else if(filter.room == 'meter' ){
-            meter_item = await  getItem_meter()
-            count = parseInt(filter.day) + map_time
-            document.getElementById('total_room').innerHTML = `จำนวนของในห้อง : ${meter_item.totalArray[count  - 1]}/20`
-        }
-        else if(filter.room == 'toolbox'){
-            toolbox_item = await getItem_toolbox()
-            count = parseInt(filter.day) + map_time
-            document.getElementById('total_room').innerHTML = `จำนวนของในห้อง : ${toolbox_item.totalArray[count  - 1]}/20`
-        }
-        else{
-            arduino_item = await getItem_arduino()
-            count = parseInt(filter.day) + map_time
-            document.getElementById('total_room').innerHTML = `จำนวนของในห้อง : ${arduino_item.totalArray[count  - 1]}/20`
-        }
-    }
-
-    function click_confirm(){
+    function click_confirm() {
+        document.getElementById('confirm').style.backgroundColor = "#CCD7DE";
         getFilter(r, d, t);
         select_delete(Filter);
     }
 
     function go_blacklist() {
-        location.href = "blacklist.html ";
+        location.href = "blacklist.html";
     }
+
+    function go_dinoLab() {
+        location.href = "DinoLab.html";
+    }
+
+    function logout() {
+        location.href = "login.html";
+        console.log("logout");
+    }
+    async function start(num) {
+        room = num;
+        click_room(num);
+        getFilter(r, d, t);
+        show_stu(Filter);
+        total_item(Filter);
+        document.getElementById('con_item').disabled = true;
+    }
+    var parain = new URLSearchParams(window.location.search);
+    var pass = parain.get("page");
 
     getFilter(r, d, t);
     show_stu(Filter);
+    if (pass > 0) {
+        start(pass - 1);
+    } else {
+        start(0);
+    }
 </script>
 
 </html>

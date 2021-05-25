@@ -22,6 +22,12 @@ function chang_page(numpage) {
     paraout.append("page", numpage);
     location.href = "Addmin.html?" + paraout.toString();
 }
+
+function logout() {
+    location.href = "login.html";
+    console.log("logout");
+}
+
 async function getUsers() {
     let url = 'https://bookingapi1.azurewebsites.net/api/users';
     try {
@@ -72,6 +78,10 @@ async function init() {
     document.getElementById("confirm").disabled = true;
     document.getElementById("confirm").style.background = "#CCD7DE";
     document.getElementById("checkQ").innerHTML = "";
+}
+
+function go_dinoLab() {
+    location.href = "DinoLab.html";
 }
 
 function change() {
